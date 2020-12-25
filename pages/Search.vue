@@ -2,6 +2,8 @@
     <div class="search-page container mx-auto">
         <div class="row">
             <div class="col-xs-12">
+                <breadcrumbs :with-homepage="true" :routes="[]" active-route="Search" />
+
                 <h3>Search</h3>
             </div>
 
@@ -24,11 +26,13 @@
 <script>
 import { Search } from '@vue-storefront/core/modules/catalog/components/Search'
 import ProductListing from 'theme/components/core/blocks/Product/ProductListing.vue'
+import Breadcrumbs from 'theme/components/core/Breadcrumbs.vue'
 
 export default {
     mixins: [Search],
     components: {
         ProductListing,
+        Breadcrumbs
     },
     created () {
 

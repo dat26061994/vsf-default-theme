@@ -112,7 +112,7 @@ export default {
         align-items: center;
         background: #fff;
         box-shadow: 0 -5px 16px 0 rgba(0,0,0,0.1);
-        z-index: 200;
+        z-index: 3;
         transition: opacity 0.25s ease-out;
         opacity: 1;
         .product-name {

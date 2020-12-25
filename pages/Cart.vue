@@ -2,7 +2,7 @@
     <div class="cart-page container mx-auto">
         <div class="row">
             <div class="col-xs-12">
-                <Breadcrumb :breadcrumbs="breadcrumbs" />
+                <breadcrumbs :with-homepage="true" :routes="[]" active-route="Cart" />
             </div>
 
             <div class="col-xs-12 ">
@@ -57,7 +57,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { currentStoreView } from '@vue-storefront/core/lib/multistore'
-import Breadcrumb from 'theme/components/Breadcrumb.vue'
+import Breadcrumbs from 'theme/components/core/Breadcrumbs.vue'
 import Product from 'theme/components/core/blocks/Microcart/Product'
 
 export default {
@@ -78,7 +78,7 @@ export default {
         }
     },
     components: {
-        Breadcrumb,
+        Breadcrumbs,
         Product,
     },
     computed: {
