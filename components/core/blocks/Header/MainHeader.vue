@@ -6,36 +6,49 @@
             <top-bar v-show="show" />
         </transition>
 
-        <div class="container py-2">
+        <div class="py-2">
             <!-- Header desktop -->
-            <div class="row bg-white d-none d-sm-flex align-items-center">
+            <div class="d-none d-sm-block">
+                <div class="container mx-auto">
+                    <div class="row bg-white  align-items-center">
             
-                <div class="col-xs-6">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <logo height="40" width="auto" />
-                        </div>
-                        <div class="col-md-9 ">
-                            <div class="span12">
-                                <div class="custom-search-container d-flex justify-content-center">
-                                    <button type="submit" class="btn"><i class="fas fa-search"></i></button>
-                                    <input type="text" v-model="search" @change="searchProducts" class="search-query mac-style p-2" placeholder="What are you searching for?">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <logo height="40" width="auto" />
+                                </div>
+                                <div class="col-md-9 ">
+                                    <div class="span12">
+                                        <div class="custom-search-container d-flex justify-content-center">
+                                            <button type="submit" class="btn"><i class="fas fa-search"></i></button>
+                                            <input type="text" v-model="search" @change="searchProducts" class="search-query mac-style p-2" placeholder="What are you searching for?">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-xs-6 text-right">
+                            <microcart-icon class="p15 icon pointer" />
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="col-xs-6 text-right">
-                    <microcart-icon class="p15 icon pointer" />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <hr class="my-2">
+                    </div>
                 </div>
 
-                <div class="col-md-12">
-                    <hr class="my-2">
-
-                    <mega-menu/>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mega-menu/>
+                        </div>
+                    </div>
                 </div>
-
+                
             </div>
 
             <!-- Header mobile -->
