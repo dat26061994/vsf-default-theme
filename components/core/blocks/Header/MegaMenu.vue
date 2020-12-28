@@ -1,8 +1,7 @@
 <template>
     <div class="mega-menu mb-2">
-
         <ul class="m-0">
-            <li class="d-inline-block menu-item relative p-2" v-for="item in menus.filter(m => m.parent_id == 0)" :key="item.slug">
+            <li class="d-inline-block menu-item relative p-2" v-for="item in menuData" :key="item.slug">
                 <div class="flex align-items-center">
 
                     <router-link
@@ -12,14 +11,14 @@
                         {{ item.name }}
                         
                     </router-link>
-                    <span class="material-icons" v-if="menus.filter(m => m.parent_id == item.id).length > 0">
+                    <span class="material-icons" v-if="item.children">
                     arrow_drop_down
                     </span>
                 </div>
                 
                 <!-- Submenu -->
                 <ul class="absolute sub-menu hide">
-                    <li class="p-2" v-for="child in menus.filter(m => m.parent_id == item.id)">
+                    <li class="p-2" v-for="child in item.children" :key="child.slug"> 
                         <router-link
                             class="cl-accent no-underline col-xs"
                             :to="item.path"
@@ -86,10 +85,16 @@ export default {
                     parent_id: 0,
                     path: '/'
                 },
-            ]
+            ],
+            menuData: null,
         }
     },
     mixins: [SidebarMenu],
+    created() {
+
+        this.menuData = this.generateMenu(this.menus, 0);
+
+    },
     computed: {
         visibleCategories () {
             return this.categories.filter(category => {
@@ -98,12 +103,26 @@ export default {
         },
     },
     methods: {
+        generateMenu (arr, parent) {
+            let vm = this;
+            var out = []
+            for(var i in arr) {
+                if(arr[i].parent_id == parent) {
+                    var children = vm.generateMenu(arr, arr[i].id)
+
+                    if(children.length) {
+                        arr[i].children = children
+                    }
+                    out.push(arr[i])
+                }
+            }
+            return out
+        },
         categoryLink (category) {
             return formatCategoryLink(category)
         },
         children (item) {
             return this.menus.filter(c => {
-                console.log(c);
                 return c.parent_id === item.id 
             }) 
         }
