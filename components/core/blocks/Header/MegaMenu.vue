@@ -68,7 +68,7 @@ export default {
                     name: 'Men 3',
                     slug: 'men-3',
                     id: 12,
-                    parent_id: 1,
+                    parent_id: 11,
                     path: '/'
                 },
                 {
@@ -116,6 +116,7 @@ export default {
                     out.push(arr[i])
                 }
             }
+            console.log(out);
             return out
         },
         categoryLink (category) {
