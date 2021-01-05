@@ -2,7 +2,7 @@
     <div class="checkout__informations">
         <div class="row">
             <div class="hidden-xs col-sm-2 col-md-1" />
-
+            <h1>Component Core Informations</h1>
         </div>
     </div>
 </template>

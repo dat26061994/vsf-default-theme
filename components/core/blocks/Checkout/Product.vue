@@ -58,6 +58,7 @@
 </template>
 
 <script>
+
 import { Product } from '@vue-storefront/core/modules/checkout/components/Product'
 import { onlineHelper } from '@vue-storefront/core/helpers'
 import ProductImage from 'theme/components/core/blocks/Product/ProductImage'

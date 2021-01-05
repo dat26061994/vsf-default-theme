@@ -7,7 +7,6 @@
     </span>
   </no-ssr>
 </template>
-
 <script>
 import NoSSR from 'vue-no-ssr'
 import { isServer } from '@vue-storefront/core/helpers'
