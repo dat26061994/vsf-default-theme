@@ -155,7 +155,7 @@ export default {
 <style lang="scss">
 @media only screen and (max-width: 600px) {
 	.main {
-		margin-top: 9rem;
+		margin-top: 7rem;
 	}
 }
 

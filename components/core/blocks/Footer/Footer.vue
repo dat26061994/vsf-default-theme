@@ -1,10 +1,10 @@
 <template>
 	<footer :class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }">
 		<div
-			class="footer-links flex  pb60 px-3 px-md-4 bg-white"
+			class="footer-links flex  px-3 px-md-4 bg-white"
 			v-if="!isCheckoutPage"
 		>
-			<div class="container px-md-5 px-5">
+			<div class="container px-md-5 px-5 mx-md-4">
 				<div class="">
 					<div class="row">
 						<div class="col-md-4 col-sm-12 col-xs-12 text-left py-4 px-3">
@@ -24,22 +24,13 @@
 							<p>© 2020 64Hydro | All Rights Reserved.</p>
 							<div class="row">
 								<a
-									class="social-icon mx10 brdr-circle no-underline"
+									class="social-icon link_footer mx10 brdr-circle no-underline"
 									href="https://www.facebook.com/"
 									:aria-label="$t('Go to Facebook')"
 								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="facebook icon"
-										width="40"
-										height="40"
-										viewBox="0 0 40 40"
-										fill="#BDBDBD"
-									>
-										<path
-											d="M20,0 C8.9541,0 0,8.95435 0,20 C0,31.0457 8.9541,40 20,40 C31.0459,40 40,31.0457 40,20 C40,8.95435 31.0459,0 20,0 Z M22.085,20.8785 L22.085,31.7595 L17.5825,31.7595 L17.5825,20.8789 L15.3335,20.8789 L15.3335,17.1293 L17.5825,17.1293 L17.5825,14.8779 C17.5825,11.819 18.8525,10 22.4609,10 L25.4653,10 L25.4653,13.7501 L23.5874,13.7501 C22.1826,13.7501 22.0898,14.2742 22.0898,15.2521 L22.085,17.1288 L25.4863,17.1288 L25.0884,20.8785 L22.085,20.8785 Z"
-										/>
-									</svg>
+									<span class="material-icons">
+										facebook
+									</span>
 								</a>
 								<a
 									class="social-icon mx10 brdr-circle no-underline"
@@ -92,22 +83,6 @@
 									href="https://www.youtube.com"
 									:aria-label="$t('Go to Youtube')"
 								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="youtube icon"
-										width="40"
-										height="40"
-										viewBox="0 0 40 40"
-										fill="#BDBDBD"
-									>
-										<path
-											d="M20,0 C8.9541,0 0,8.95435 0,20 C0,31.0457 8.9541,40 20,40 C31.0459,40 40,31.0457 40,20 C40,8.95435 31.0459,0 20,0 Z M28.335,13.1244 C29.2529,13.3763 29.9756,14.1185 30.2212,15.061 C30.667,16.7692 30.667,20.3333 30.667,20.3333 C30.667,20.3333 30.667,23.8973 30.2212,25.6056 C29.9756,26.5481 29.2529,27.2903 28.335,27.5424 C26.6714,28 20,28 20,28 C20,28 13.3291,28 11.6655,27.5424 C10.7476,27.2903 10.0244,26.5481 9.7793,25.6056 C9.3335,23.8973 9.3335,20.3333 9.3335,20.3333 C9.3335,20.3333 9.3335,16.7692 9.7793,15.061 C10.0244,14.1185 10.7476,13.3763 11.6655,13.1244 C13.3291,12.6666 20,12.6666 20,12.6666 C20,12.6666 26.6714,12.6666 28.335,13.1244 Z"
-										/>
-										<polygon
-											points="0 6.667 0 0 5.333 3.333"
-											transform="translate(18 17.33)"
-										/>
-									</svg>
 								</a>
 							</div>
 						</div>
@@ -117,7 +92,7 @@
 							</h3>
 							<div class="mt15">
 								<router-link
-									class=""
+									class="link_footer"
 									:to="localizedRoute('/customer-service')"
 									exact
 								>
@@ -125,12 +100,20 @@
 								</router-link>
 							</div>
 							<div class="mt15">
-								<router-link class="" :to="localizedRoute('/size-guide')" exact>
+								<router-link
+									class="link_footer"
+									:to="localizedRoute('/size-guide')"
+									exact
+								>
 									{{ $t("FAQs") }}
 								</router-link>
 							</div>
 							<div class="mt15">
-								<router-link class="" :to="localizedRoute('/contact')" exact>
+								<router-link
+									class="link_footer"
+									:to="localizedRoute('/contact')"
+									exact
+								>
 									{{ $t("Customer Support") }}
 								</router-link>
 							</div>
@@ -140,13 +123,17 @@
 								{{ $t("Contact Us") }}
 							</h3>
 							<div class="mt15">
-								<router-link class="" :to="getLinkFor('/about-us')" exact>
+								<router-link
+									class="link_footer"
+									:to="getLinkFor('/about-us')"
+									exact
+								>
 									{{ $t("Return Policy") }}
 								</router-link>
 							</div>
 							<div class="mt15">
 								<router-link
-									class=""
+									class="link_footer"
 									:to="getLinkFor('/customer-service')"
 									exact
 								>
@@ -155,7 +142,7 @@
 							</div>
 							<div class="mt15">
 								<router-link
-									class=""
+									class="link_footer"
 									:to="localizedRoute('/store-locator')"
 									exact
 								>
@@ -178,12 +165,12 @@
 							{{ getVersionInfo }}
 						</li>
 						<li class="inline-flex">
-							<router-link class="cl-tertiary mr10 underline" to="/legal" exact>
+							<router-link class="tertiary" to="/legal" exact>
 								{{ $t("Legal notice") }}
 							</router-link>
 						</li>
 						<li class="inline-flex">
-							<router-link class="cl-tertiary underline" to="/privacy" exact>
+							<router-link class="tertiary" to="/privacy" exact>
 								{{ $t("Privacy policy") }}
 							</router-link>
 						</li>
@@ -261,14 +248,23 @@ export default {
 @import "~theme/css/helpers/functions/color";
 $color-secondary: color(secondary);
 $color-white: color(white);
-
+$color-white: color(black);
+a:hover {
+	text-decoration: none;
+}
 footer {
-	border-top: 1px solid #000;
+	// border-top: 1px solid $color-white;
 }
 .icon {
 	transition: 0.3s all;
 }
-
+.tertiary {
+	color: black;
+	padding: 0 20px;
+}
+.tertiary:hover {
+	text-decoration: none;
+}
 .social-icon {
 	width: 40px;
 	height: 40px;
@@ -344,7 +340,7 @@ footer {
 		padding-bottom: 30px;
 	}
 }
-a {
+.link_footer {
 	color: #000;
 	&:hover {
 		color: #000;

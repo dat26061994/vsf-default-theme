@@ -41,17 +41,14 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row ">
 					<div class="col-xs-12">
 						<hr class="my-1" />
 					</div>
 				</div>
-
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<mega-menu />
-						</div>
+				<div class="row">
+					<div class="col-md-12">
+						<mega-menu />
 					</div>
 				</div>
 			</div>

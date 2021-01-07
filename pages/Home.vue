@@ -253,13 +253,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
+$color-btn-home: color(bg-btn-home);
+$color-btn-home-hover: color(bg-btn-home-hover);
 .new-collection {
 	@media (max-width: 767px) {
 		padding-top: 0;
 	}
 }
 .btn-features-image-content {
-	background-color: #0d9ef2;
+	background-color: $color-btn-home;
 	color: #fff;
 	transition: opacity 0.3s ease;
 	font-weight: 700;
@@ -286,7 +290,7 @@ export default {
 	border: 1px solid transparent;
 	overflow: hidden;
 	&:hover {
-		background-color: #068fdf;
+		background-color: $color-btn-home-hover;
 		&::after {
 			height: 0px;
 		}

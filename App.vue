@@ -38,6 +38,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
+$color-btn: color(add-to-cart);
+$color-btn-hover: color(add-to-cart-hover);
+$color-white: color(white);
 * {
 	font-family: "Muli", sans-serif;
 }
@@ -56,7 +61,6 @@ a {
 }
 a:hover {
 	border: none;
-	text-decoration: none;
 	color: #4f4f4f;
 	&::after {
 		height: 0px !important;
@@ -113,7 +117,7 @@ a:hover {
 }
 
 .btn-add-to-cart {
-	background-color: #f29e0d;
+	background-color: $color-btn;
 	color: #fff;
 	font-weight: 700;
 	font-style: normal;
@@ -141,9 +145,9 @@ a:hover {
 }
 
 .btn-add-to-cart:hover {
-	background-color: #c27e0a !important;
+	background-color: $color-btn-hover !important;
 	text-decoration: none !important;
 	outline: none !important;
-	color: #fff;
+	color: $color-white;
 }
 </style>
