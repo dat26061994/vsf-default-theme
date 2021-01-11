@@ -110,7 +110,6 @@
 <script>
 import { sameAs } from 'vuelidate/lib/validators'
 import Composite from '@vue-storefront/core/mixins/composite'
-
 import BaseCheckbox from 'theme/components/core/blocks/Form/BaseCheckbox'
 import ButtonFull from 'theme/components/theme/ButtonFull'
 import CartSummary from 'theme/components/core/blocks/Checkout/CartSummary'
@@ -149,6 +148,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
