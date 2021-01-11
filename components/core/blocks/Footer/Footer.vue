@@ -1,7 +1,10 @@
 <template>
-	<footer :class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }">
+	<footer
+		:class="{ 'brdr-top-1 brdr-cl-secondary': isCheckoutPage }"
+		class="justify-content-center m-auto"
+	>
 		<div
-			class="footer-links flex  px-3 px-md-2 mx-md-5 bg-white"
+			class="footer-links justify-content-center  px-3 px-md-2 mx-md-5 bg-white"
 			v-if="!isCheckoutPage"
 		>
 			<div class="container  footer-content px-md-2 px-5 mx-md-5">
