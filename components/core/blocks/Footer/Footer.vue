@@ -4,10 +4,10 @@
 		class="justify-content-center m-auto"
 	>
 		<div
-			class="footer-links justify-content-center  px-3 px-md-2 mx-md-5 bg-white"
+			class="footer-links container justify-content-center m-auto bg-white"
 			v-if="!isCheckoutPage"
 		>
-			<div class="container  footer-content px-md-2 px-5 mx-md-5">
+			<div class="footer-content px-md-2 px-5 mx-md-5">
 				<div class="">
 					<div class="row">
 						<div class="col-md-4 col-sm-12 col-xs-12 text-left py-4 px-3">
@@ -132,8 +132,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="container px-md-5 px-5 mx-md-5 my-md-4">
-			<div class="row middle-xs px15 bottom-links">
+		<div class="container m-auto my-md-4">
+			<div
+				class="row d-flex justify-content-md-end px-md-2 px-5 mx-md-5 justify-content-center align-items-center"
+			>
 				<div
 					class="col-md-6 col-12 d-flex justify-content-center justify-content-md-start"
 				>
@@ -154,7 +156,7 @@
 				</div>
 			</div>
 			<div
-				class="d-flex justify-content-md-end my-md-2 my-sm-2 my-2 justify-content-center align-items-center"
+				class="d-flex justify-content-md-end px-md-2 px-5 mx-md-5 justify-content-center align-items-center"
 			>
 				<img
 					class="payment-icon"
