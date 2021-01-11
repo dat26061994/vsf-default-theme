@@ -37,10 +37,15 @@
         </div>
       </slide>
     </carousel>
-    <i
+    <!-- <i
       class="zoom-in material-icons p15 cl-bgs-tertiary pointer"
       @click="openOverlay"
-    >zoom_in</i>
+    >zoom_in</i> -->
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" v-for="(item, index1) in gallery" :key="index1" @click="getIndex(index1)" >
+          <img :src="item.src" style="width:100%">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -57,7 +62,8 @@ export default {
     'Carousel': () => import(/* webpackChunkName: "vue-carousel" */ 'vue-carousel').then(Slider => Slider.Carousel),
     'Slide': () => import(/* webpackChunkName: "vue-carousel" */ 'vue-carousel').then(Slider => Slider.Slide),
     ProductImage,
-    ProductVideo
+    ProductVideo,
+    
   },
   props: {
     gallery: {
@@ -75,6 +81,7 @@ export default {
   },
   data () {
     return {
+      selectedProduct:1,
       carouselTransition: true,
       carouselTransitionSpeed: 0,
       currentColor: 0,
@@ -82,7 +89,12 @@ export default {
       hideImageAtIndex: null
     }
   },
-  computed: {},
+  computed: {
+    getProduct(){
+      let index = this.selectedProduct;
+      return this.gallery[index];
+    }
+  },
   beforeMount () {
     this.$bus.$on('product-after-configure', this.selectVariant)
     this.$bus.$on('product-after-load', this.selectVariant)
@@ -105,6 +117,9 @@ export default {
     navigate (index) {
       if (index < 0) return
       this.currentPage = index
+    },
+    getIndex(a){
+      return this.selectedProduct = a;
     },
     async selectVariant (configuration) {
       await this.$nextTick()
