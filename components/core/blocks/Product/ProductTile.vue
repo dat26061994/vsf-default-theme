@@ -50,32 +50,32 @@
 			</p>
 
 			<!-- 3 thẻ dưới là span chuyển thành p -->
-			<p
+			<span
 				class="price-original text-left mr5 lh30 cl-secondary"
 				v-if="
 					product.special_price &&
 						parseFloat(product.original_price_incl_tax) > 0 &&
 						!onlyImage
 				"
-				>{{ product.original_price_incl_tax | price(storeView) }}</p
+				>{{ product.original_price_incl_tax | price(storeView) }}</span
 			>
-			<p
+			<span
 				class="price-special lh30 text-left weight-700 p-2 px-3"
 				v-if="
 					product.special_price &&
 						parseFloat(product.special_price) > 0 &&
 						!onlyImage
 				"
-				>{{ product.price_incl_tax | price(storeView) }}</p
+				>{{ product.price_incl_tax | price(storeView) }}</span
 			>
-			<p
-				class="lh30 price-text text-left"
+			<span
+				class="lh30 price-text text-left text-sm-left text-md-left"
 				v-if="
 					!product.special_price &&
 						parseFloat(product.price_incl_tax) > 0 &&
 						!onlyImage
 				"
-				>{{ product.price_incl_tax | price(storeView) }}</p
+				>{{ product.price_incl_tax | price(storeView) }}</span
 			>
 		</router-link>
 	</div>
