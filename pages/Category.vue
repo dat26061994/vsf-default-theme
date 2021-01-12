@@ -1,18 +1,24 @@
 <template>
   <div id="category">
-    <header class="bg-cl-secondary py35 pl20">
+    <header class=" py35 pl20">
       <div class="container">
         <breadcrumbs />
         <div class="row middle-sm">
-          <h1 class="col-sm-8 category-title mb10">
+          <h1 class="col-sm-8 category-title ">
             {{ getCurrentCategory.name }}
           </h1>
-          <div class="sorting col-sm-2 align-right mt50">
+          <!-- Là phần chọn column 3 4 hay 6 cột -->
+
+          <!-- <div class="sorting col-sm-2 align-right mt50">
             <label class="mr10">{{ $t('Columns') }}:</label>
             <columns @change-column="columnChange" />
+          </div> -->
+          <div class="sorting col-sm-2 align-right ">
+            <p>Sort By</p>
           </div>
-          <div class="sorting col-sm-2 align-right mt50">
+          <div class="sorting col-sm-2 align-right ">
             <sort-by
+              class="sort-by-clicked"
               :has-label="true"
               @change="changeFilter"
               :value="getCurrentSearchQuery.sort"
@@ -22,13 +28,16 @@
       </div>
       <div class="container">
         <div class="row m0">
-          <button
+          <!-- <button
             class="col-xs-5 mt25 mr15 p15 mobile-filters-button bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
             @click="openFilters"
           >
             {{ $t('Filters') }}
-          </button>
-          <div class="mobile-sorting col-xs-6 mt25">
+          </button> -->
+          <div class="mobile-sorting col-xs-6 text-right m-auto">
+            <p class="m0">Sort By</p>
+          </div>
+          <div class="mobile-sorting col-xs-6 m-auto">
             <sort-by
               @change="changeFilter"
               :value="getCurrentSearchQuery.sort"
@@ -39,7 +48,9 @@
     </header>
     <div class="container pb60">
       <div class="row m0 pt15">
-        <div class="col-md-3 start-xs category-filters">
+        <!-- phần sidebar bên trái search theo màu, size -->
+
+        <!-- <div class="col-md-3 start-xs category-filters">
           <sidebar :filters="getAvailableFilters" @changeFilter="changeFilter" />
         </div>
         <div class="col-md-3 start-xs mobile-filters" v-show="mobileFilters">
@@ -56,11 +67,13 @@
           >
             {{ $t('Filter') }}
           </button-full>
-        </div>
-        <div class="col-md-9 px10 border-box products-list">
-          <p class="col-xs-12 end-md m0 pb20 cl-secondary">
+        </div> -->
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 px10 border-box products-list">
+          <!-- phần đếm số lượng sản phẩm còn -->
+
+          <!-- <p class="col-xs-12 end-md m0 pb20 cl-secondary">
             {{ $t('{count} items', { count: getCategoryProductsTotal }) }}
-          </p>
+          </p> -->
           <div v-if="isCategoryEmpty" class="hidden-xs">
             <h4 data-testid="noProductsInfo">
               {{ $t('No products found!') }}
@@ -79,7 +92,7 @@
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import Sidebar from '../components/core/blocks/Category/Sidebar.vue'
+// import Sidebar from '../components/core/blocks/Category/Sidebar.vue'
 import ProductListing from '../components/core/blocks/Product/ProductListing.vue'
 import Breadcrumbs from '../components/core/Breadcrumbs.vue'
 import SortBy from '../components/core/SortBy.vue'
@@ -87,7 +100,7 @@ import { isServer } from '@vue-storefront/core/helpers'
 import { Logger } from '@vue-storefront/core/lib/logger'
 import { getSearchOptionsFromRouteParams } from '@vue-storefront/core/modules/catalog-next/helpers/categoryHelpers'
 import config from 'config'
-import Columns from '../components/core/Columns.vue'
+// import Columns from '../components/core/Columns.vue'
 import ButtonFull from 'theme/components/theme/ButtonFull.vue'
 import { mapGetters } from 'vuex'
 import onBottomScroll from '@vue-storefront/core/mixins/onBottomScroll'
@@ -120,15 +133,15 @@ export default {
     ButtonFull,
     ProductListing,
     Breadcrumbs,
-    Sidebar,
+    // Sidebar,
     SortBy,
-    Columns
+    // Columns
   },
   mixins: [onBottomScroll],
   data () {
     return {
       mobileFilters: false,
-      defaultColumn: 3,
+      defaultColumn: 4,
       loadingProducts: false,
       loading: true,
       breadcrumbs: [
@@ -228,6 +241,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  header {
+    background-color: white
+  }
+
+  .sort-by-clicked:hover {
+    border: 1px solid rgb(64, 64, 219);
+  }
   .btn {
     &__filter {
       min-width: 100px;
