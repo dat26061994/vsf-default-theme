@@ -1,19 +1,19 @@
 <template>
 	<div class="price serif">
 		<div
-			class="h3 cl-secondary"
+			class="h3 cl-secondary padding-bottom"
 			v-if="initialPrice.special && price.default && price.original"
 		>
-			<span class="h2 cl-mine-shaft weight-700">{{
+			<span class="h3 product-price-special weight-700">{{
 				price.special | price(storeView)
 			}}</span
 			>&nbsp;
-			<span class="price-original h3">{{
-				price.original | price(storeView)
-			}}</span>
+			<span class="product-price-original h3">
+				<s>{{ price.original | price(storeView) }}</s>
+			</span>
 		</div>
 		<div
-			class="h2 cl-mine-shaft weight-700"
+			class="h3 product-price-default padding-bottom weight-700"
 			v-if="!initialPrice.special && price.default"
 		>
 			{{ price.default | price(storeView) }}
@@ -115,6 +115,10 @@ export default {
 @import "~theme/css/variables/colors";
 @import "~theme/css/helpers/functions/color";
 $color-primary: color(primary);
+$color-product-price-special: color(product-price-special);
+$color-product-price-original: color(silver);
+$color-product-price-default: color(matterhorn);
+
 .price-original {
 	text-decoration: line-through;
 }
@@ -123,5 +127,18 @@ $color-primary: color(primary);
 	@media (max-width: 767px) {
 		color: $color-primary;
 	}
+}
+.product-price-special {
+	color: $color-product-price-special;
+}
+.product-price-original {
+	color: $color-product-price-original;
+}
+.product-price-default {
+	color: $color-product-price-default;
+}
+.padding-bottom {
+	padding-bottom: 10px;
+	border-bottom: 1px solid $color-product-price-original;
 }
 </style>

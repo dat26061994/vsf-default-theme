@@ -74,21 +74,18 @@
 		</div>
 		<div class="mega-menu-dropdown" :class="showAllCollection">
 			<div class="row mt-md-4 center-md mx-md-4">
-				<div
-					class="col-md-2 mx-md-2 text-left"
-					v-for="item in collection.slice(0, 5)"
-					:key="item.slug"
-				>
+				<div class="col-md-2 mx-md-2 text-left">
 					<p class="collection-name mb-0 mr-md-2  p-md-2 font-weight-bold">
-						{{ item.name }}
+						Name
 					</p>
 					<ul class="my-md-2 pl-md-0">
-						<li
-							class="my-md-1 py-md-1 px-md-2 "
-							v-for="(name, index) in item.type"
-							:key="index"
-						>
-							Name
+						<li class="my-md-1 py-md-1 px-md-2 ">
+							<router-link to="">
+								name
+								<span class="material-icons">
+									arrow_drop_down
+								</span>
+							</router-link>
 						</li>
 					</ul>
 				</div>
@@ -323,6 +320,7 @@ export default {
 					path: "/",
 				},
 			],
+			category: [],
 		};
 	},
 	mixins: [SidebarMenu],
@@ -355,6 +353,26 @@ export default {
 		hideCollection() {
 			this.isShowCollection = false;
 		},
+		async loadCategory() {
+			this.category = await this.$store.dispatch("category/list", {});
+			// for (const item of this.category.items) {
+			// 	if (item.parent_id == 2) {
+			//     console.log(item.id, item.name);
+
+			// 	}
+			// }
+			let c = this.category.items.filter((m) => m.parent_id == 2);
+			const map1 = c.map((x) => {
+				this.category.items.filter((m) => {
+					if (m.parent_id == x.id) {
+						console.log(m.id, m.parent_id, x.id);
+					}
+				});
+			});
+		},
+	},
+	mounted() {
+		this.loadCategory();
 	},
 };
 </script>
