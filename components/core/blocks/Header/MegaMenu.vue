@@ -24,6 +24,7 @@
 						<li
 							class="p-2"
 							v-for="child in menus.filter((m) => m.parent_id == item.id)"
+							:key="child.slug"
 						>
 							<router-link
 								class="no-underline col-xs uppercase "
@@ -74,17 +75,26 @@
 		</div>
 		<div class="mega-menu-dropdown" :class="showAllCollection">
 			<div class="row mt-md-4 center-md mx-md-4">
-				<div class="col-md-2 mx-md-2 text-left">
+				<div
+					class="col-md-2 mx-md-1 text-left"
+					v-for="item in category.items
+						.filter((m) => m.parent_id == 2)
+						.slice(0, 5)"
+					:key="item.slug"
+				>
 					<p class="collection-name mb-0 mr-md-2  p-md-2 font-weight-bold">
-						Name
+						{{ item.name }}
 					</p>
 					<ul class="my-md-2 pl-md-0">
-						<li class="my-md-1 py-md-1 px-md-2 ">
-							<router-link to="">
-								name
-								<span class="material-icons">
-									arrow_drop_down
-								</span>
+						<li
+							class="my-md-1 py-md-1 px-md-2 "
+							v-for="child in category.items.filter(
+								(m) => m.parent_id == item.id
+							)"
+							:key="child.slug"
+						>
+							<router-link :to="child.path">
+								{{ child.name }}
 							</router-link>
 						</li>
 					</ul>
@@ -357,18 +367,18 @@ export default {
 			this.category = await this.$store.dispatch("category/list", {});
 			// for (const item of this.category.items) {
 			// 	if (item.parent_id == 2) {
-			//     console.log(item.id, item.name);
-
+			// 		console.log(item.id, item.name);
 			// 	}
 			// }
-			let c = this.category.items.filter((m) => m.parent_id == 2);
-			const map1 = c.map((x) => {
-				this.category.items.filter((m) => {
-					if (m.parent_id == x.id) {
-						console.log(m.id, m.parent_id, x.id);
-					}
-				});
-			});
+			console.log(this.category.items.filter((m) => m.parent_id == 2));
+			// let c = this.category.items.filter((m) => m.parent_id == 2);
+			// const map1 = c.map((x) => {
+			// 	this.category.items.filter((m) => {
+			// 		if (m.parent_id == x.id) {
+			// 			console.log(m.id, m.parent_id, x.id);
+			// 		}
+			// 	});
+			// });
 		},
 	},
 	mounted() {
@@ -383,6 +393,7 @@ a {
 }
 a:hover {
 	text-decoration: none;
+	color: #000;
 }
 
 .mega-menu {

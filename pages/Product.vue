@@ -37,6 +37,8 @@
 								:product="getCurrentProduct"
 								:custom-options="getCurrentCustomOptions"
 							/>
+							<hr class="border-bottom" />
+
 							<div
 								class="cl-primary variants"
 								v-if="getCurrentProduct.type_id == 'configurable'"
@@ -542,7 +544,11 @@ $color-tertiary: color(tertiary);
 $color-secondary: color(secondary);
 $color-white: color(white);
 $bg-secondary: color(secondary, $colors-background);
-
+$color-sliver: color(silver);
+.border-bottom {
+	height: 4px;
+	background-color: $color-sliver;
+}
 .product {
 	&__add-to-compare {
 		display: none;
