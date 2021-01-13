@@ -23,7 +23,7 @@
 			</AddToCompare>
 		</div>
 		<router-link
-			class="block no-underline product-link"
+			class="block no-underline product-link mb20"
 			:to="productLink"
 			data-testid="productLink"
 		>
@@ -34,7 +34,7 @@
 					{ new: labelsActive && isNew },
 				]"
 			>
-				<product-image
+					<product-image
 					class="product-cover__thumb"
 					:image="thumbnailObj"
 					:alt="product.name | htmlDecode"
@@ -43,12 +43,12 @@
 				/>
 			</div>
 
-			<p class="mb0 product-name h5 cl-accent mt10 px-3 mb-2" v-if="!onlyImage">
+			<p class="mb0 product-name h5 cl-accent mt10 px-3 " v-if="!onlyImage">
 				{{ product.name | htmlDecode }}
 			</p>
-
+			
 			<span
-				class="price-original mr5 lh30 cl-secondary p-2 px-3"
+				class="price-original text-left mr5 lh30 cl-secondary p-2 px-3"
 				v-if="
 					product.special_price &&
 						parseFloat(product.original_price_incl_tax) > 0 &&
@@ -57,7 +57,7 @@
 				>{{ product.original_price_incl_tax | price(storeView) }}</span
 			>
 			<span
-				class="price-special lh30 cl-accent weight-700 p-2 px-3"
+				class="price-special lh30 text-left weight-700 p-2 px-3"
 				v-if="
 					product.special_price &&
 						parseFloat(product.special_price) > 0 &&
@@ -66,7 +66,7 @@
 				>{{ product.price_incl_tax | price(storeView) }}</span
 			>
 			<span
-				class="lh30 cl-secondary p-2 px-3"
+				class="lh30 price-text text-left text-sm-left text-md-left p-2 px-3"
 				v-if="
 					!product.special_price &&
 						parseFloat(product.price_incl_tax) > 0 &&
@@ -170,23 +170,30 @@ export default {
 $bg-secondary: color(secondary, $colors-background);
 $border-secondary: color(secondary, $colors-border);
 $color-white: color(white);
+.price-text {
+	color: #0d9ef2;
+}
 
 .product {
 	.product-name {
 		line-height: 22px;
 		text-transform: unset;
-		min-height: 46px;
+		min-height: 40px;
 		display: -webkit-box;
-		max-height: 46px;
+		max-height: 40px;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: normal;
 		-webkit-line-clamp: 2;
+		color: #3E444B;
+		font-size: 16px;
 	}
-	.product-name:hover {
-		text-decoration: underline;
-	}
+	// gạch chân ở tên sp
+
+	// .product-name:hover {
+	// 	text-decoration: underline;
+	// }
 	.price-special {
 		color: red;
 	}
@@ -249,16 +256,19 @@ $color-white: color(white);
 		@media screen and (min-width: 768px) {
 			padding-bottom: calc(300% / (276.5 / 115));
 		}
-		opacity: 0.8;
+		opacity: 1;
 		will-change: opacity, transform;
 		transition: 0.3s opacity $motion-main, 0.3s transform $motion-main;
 	}
 
 	@media screen and (min-width: 768px) {
 		&:hover {
+	
+			background-color: #a2a2a2;
+			
+			&
 			.product-cover__thumb {
-				opacity: 1;
-				transform: scale(1.1);
+				transform: scale(1);
 			}
 			&.sale::after,
 			&.new::after {
@@ -280,4 +290,5 @@ $color-white: color(white);
 		}
 	}
 }
+
 </style>
