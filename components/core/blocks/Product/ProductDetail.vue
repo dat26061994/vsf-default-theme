@@ -1,52 +1,94 @@
 <template>
-    <div class="product-detail">
-        <section class="container px15 pt50 pb35 cl-accent details">
-            <div>
-                <ul class="nav nav-tabs nav-justified">
-                    <li class="nav-item">
-                        <a class="nav-link" @click.prevent="setActive('description')" :class="{ active: isActive('description') }" href="#description">Description</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" @click.prevent="setActive('customer-reviews')" :class="{ active: isActive('customer-reviews') }" href="#customer-reviews">Customer Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" @click.prevent="setActive('faq')" :class="{ active: isActive('faq') }" href="#faq">Frequently Asked Questions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" @click.prevent="setActive('rar')" :class="{ active: isActive('rar') }" href="#faq">Return & Refund</a>
-                    </li>
-                </ul>
-                <div class="tab-content py-3" id="myTabContent">
-                    <div class="tab-pane fade" :class="{ 'active show': isActive('description') }" id="description" v-html="product.description">
-
-                    </div>
-                    <div class="tab-pane fade" :class="{ 'active show': isActive('customer-reviews') }" id="customer-reviews">
-
-                    </div>
-                    <div class="tab-pane fade" :class="{ 'active show': isActive('faq') }" id="faq" v-html="faq">
-
-                    </div>
-                    <div class="tab-pane fade" :class="{ 'active show': isActive('rar') }" id="rar">
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+	<div class="product-detail">
+		<section class="container px15 pt50 pb35 cl-accent details">
+			<div>
+				<ul class="nav nav-header py-2 nav-justified">
+					<li class="nav-item">
+						<a
+							class="nav-link h3 mb-0 weight-600"
+							@click.prevent="setActive('description')"
+							:class="{ active: isActive('description') }"
+							href="#description"
+							>Description</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							class="nav-link h3 mb-0 weight-600"
+							@click.prevent="setActive('customer-reviews')"
+							:class="{ active: isActive('customer-reviews') }"
+							href="#customer-reviews"
+							>Customer Reviews</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							class="nav-link h3 mb-0 weight-600 nav-text"
+							@click.prevent="setActive('faq')"
+							:class="{ active: isActive('faq') }"
+							href="#faq"
+							>Frequently Asked Questions</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							class="nav-link h3 mb-0 weight-600"
+							@click.prevent="setActive('rar')"
+							:class="{ active: isActive('rar') }"
+							href="#faq"
+							>Return & Refund</a
+						>
+					</li>
+				</ul>
+				<div class="tab-content py-3" id="myTabContent">
+					<div
+						class="tab-pane fade"
+						:class="{ 'active show': isActive('description') }"
+						id="description"
+						v-html="product.description"
+					></div>
+					<div
+						class="tab-pane fade"
+						:class="{ 'active show': isActive('customer-reviews') }"
+						id="customer-reviews"
+					>
+						<product-review />
+					</div>
+					<div
+						class="tab-pane fade"
+						:class="{ 'active show': isActive('faq') }"
+						id="faq"
+						v-html="faq"
+					></div>
+					<div
+						class="tab-pane fade"
+						:class="{ 'active show': isActive('rar') }"
+						id="rar"
+					>
+						<product-return-refund />
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </template>
 
 <script>
+import ProductReview from "./ProductReview";
+import ProductReturnRefund from "./ProductReturnRefund";
+
 export default {
-    props: {
-        product: {
-            type: Object,
-            default: {}
-        }
-    },
-    data() {
-        return {
-            activeItem: 'description',
-            faq: `<div class="product__description-html"><figure><img data-src="https://img.btdmp.com/files/10110793/2020/09/29/1601353798f66248541b.png" data-image="235301" src="https://img.btdmp.com/files/10110793/2020/09/29/1601353798f66248541b.png" lazy="loaded"></figure>
+	components: { ProductReview, ProductReturnRefund },
+	props: {
+		product: {
+			type: Object,
+			default: {},
+		},
+	},
+	data() {
+		return {
+			activeItem: "description",
+			faq: `<div class="product__description-html"><figure><img data-src="https://img.btdmp.com/files/10110793/2020/09/29/1601353798f66248541b.png" data-image="235301" src="https://img.btdmp.com/files/10110793/2020/09/29/1601353798f66248541b.png" lazy="loaded"></figure>
             <h2><strong>What is 64Hydro Water Bottle made of? Plastic or Glass?</strong></h2>
             <p>We always focus on customers' safety and convenience during researching and producing products. A 32-oz glass bottle is heavy and easy to be broken. That's why we chose Tritan co-polyester plastic that is 100% BPA and toxin-free to ensure that water is clear of harmful chemicals, plastic taste, or weird odors.</p>
             <h3>Is 64Hydro Water Bottle BPA-Free?</h3>
@@ -75,19 +117,42 @@ export default {
             <p>We have a fixed shipping rate of $5.95 USD to all destinations worldwide.</p>
             <h3><strong>How long will the liquids stay cold?</strong></h3>
             <p>The tracker bottles are not designed to keep the liquids cold, so you can consider our stainless steel bottles.</p></div>`,
-        }
-    },
-    methods: {
-        isActive (menuItem) {
-            return this.activeItem === menuItem
-        },
-        setActive (menuItem) {
-            this.activeItem = menuItem
-        }
-    }
-}
+		};
+	},
+	methods: {
+		isActive(menuItem) {
+			return this.activeItem === menuItem;
+		},
+		setActive(menuItem) {
+			this.activeItem = menuItem;
+		},
+	},
+};
 </script>
 
 <style lang="scss">
-  
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
+$color-gray: color(silver);
+$color-text: color(matterhorn);
+$color-text-active: color(mine-shaft);
+.active {
+	font-weight: 700;
+	border-color: none;
+}
+.nav-header {
+	border-top: 1px solid $color-gray;
+	border-bottom: 1px solid $color-gray;
+}
+.nav-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+a {
+	color: $color-text;
+}
+a:hover {
+	color: $color-text-active;
+}
 </style>

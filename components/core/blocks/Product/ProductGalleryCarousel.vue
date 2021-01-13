@@ -1,33 +1,41 @@
 <template>
 	<div class="media-gallery-carousel">
 		<carousel
-			:per-page="1"
+			:per-page="perpage"
 			:mouse-drag="false"
 			:navigation-enabled="true"
-			pagination-active-color="#828282"
-			pagination-color="transparent"
-			navigation-next-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_right</i>"
-			navigation-prev-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_left</i>"
 			ref="carousel"
 			:speed="carouselTransitionSpeed"
 			@pageChange="pageChange"
 			:navigate-to="currentPage"
+			class="mt10"
+			:class="{ 'boder-image': perpage === 1 }"
 		>
-			<slide v-for="(images, index) in gallery" :key="images.src">
+			<slide
+				v-for="(images, index) in gallery"
+				:key="images.src"
+				class=""
+				:class="{ mr10: perpage !== 1 }"
+			>
 				<div
-					class="product-image-container bg-cl-secondary"
+					class="product-image-container "
 					:class="{ 'video-container w-100 h-100 flex relative': images.video }"
 				>
 					<product-image
 						v-show="hideImageAtIndex !== index"
-						@dblclick="openOverlay"
+						@click="activeImage(index)"
 						class="pointer image"
+						:class="{
+							'image-active': index === imageGoTo && perpage !== 1,
+							'image-hover': perpage !== 1,
+						}"
 						:image="images"
 						:alt="productName | htmlDecode"
 					/>
 					<product-video
 						v-if="images.video && index === currentPage"
 						v-bind="images.video"
+						class="image-active"
 						:index="index"
 						@video-started="onVideoStarted"
 					/>
@@ -76,6 +84,14 @@ export default {
 			type: Object,
 			required: true,
 		},
+		perpage: {
+			type: Number,
+			required: true,
+		},
+		imageGoTo: {
+			type: Number,
+			default: 0,
+		},
 	},
 	data() {
 		return {
@@ -86,6 +102,12 @@ export default {
 			hideImageAtIndex: null,
 		};
 	},
+	watch: {
+		imageGoTo: function() {
+			this.$refs.carousel.goToPage(this.imageGoTo);
+			console.log(this.imageGoTo);
+		},
+	},
 	computed: {},
 	beforeMount() {
 		this.$bus.$on("product-after-configure", this.selectVariant);
@@ -93,19 +115,21 @@ export default {
 	},
 	mounted() {
 		this.selectVariant();
-
 		if (this.configuration.color) {
 			const { color } = this.configuration;
 			this.currentColor = color.id;
 		}
-
 		this.$emit("loaded");
 	},
+
 	beforeDestroy() {
 		this.$bus.$off("product-after-configure", this.selectVariant);
 		this.$bus.$off("product-after-load", this.selectVariant);
 	},
 	methods: {
+		borderImage() {
+			return { "boder-image": this.perpage === 1 };
+		},
 		navigate(index) {
 			if (index < 0) return;
 			this.currentPage = index;
@@ -136,7 +160,6 @@ export default {
 					this.navigate(index);
 				}
 			}
-
 			this.$emit("close");
 		},
 		openOverlay() {
@@ -152,19 +175,31 @@ export default {
 				this.carouselTransitionSpeed = 500;
 			}
 		},
-		pageChange(index) {
+		pageChange() {
 			this.switchCarouselSpeed();
 			this.hideImageAtIndex = null;
+			this.$emit("changePage", this.imageGoTo);
 		},
 		onVideoStarted(index) {
 			this.hideImageAtIndex = index;
+		},
+		activeImage(index) {
+			this.$emit("changeImage", index);
+			this.$refs.carousel.goToPage(this.imageGoTo);
+		},
+		gotoImage() {
+			this.$refs.carousel.goToPage(this.imageGoTo);
 		},
 	},
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~theme/css/animations/transitions";
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
+$color-mine-shaft: color(mine-shaft);
+$color-white: color(white);
 .media-gallery-carousel {
 	position: relative;
 	text-align: center;
@@ -187,12 +222,22 @@ export default {
 	align-items: center;
 	justify-content: center;
 }
-</style>
-
-<style lang="scss">
+.boder-image {
+	border: 1px solid $color-mine-shaft;
+}
+.image-active {
+	border: 1px solid $color-mine-shaft;
+}
+.image-hover:hover {
+	border: 1px solid $color-mine-shaft;
+}
+.VueCarousel-pagination {
+	display: none;
+}
 .media-gallery-carousel,
 .media-zoom-carousel {
 	.VueCarousel-pagination {
+		display: none;
 		position: absolute;
 		bottom: 15px;
 		@media (max-width: 767px) {
@@ -200,12 +245,14 @@ export default {
 		}
 	}
 	.VueCarousel-navigation-button {
+		display: none !important;
 		margin: 0;
 		transform: translateY(-50%) !important;
 	}
 	.VueCarousel-slide {
 		backface-visibility: unset;
 	}
+
 	.VueCarousel-navigation {
 		opacity: 0;
 		&--disabled {
@@ -213,6 +260,7 @@ export default {
 		}
 	}
 	.VueCarousel-dot {
+		display: none;
 		padding: 8px !important;
 		button {
 			border: 2px solid #828282;
@@ -223,6 +271,7 @@ export default {
 			opacity: 0.9;
 		}
 		.VueCarousel-navigation-button {
+			display: none;
 			transition: opacity 3s;
 			&:after {
 				background-color: transparent;
