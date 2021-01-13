@@ -1,5 +1,5 @@
 <template>
-	<div class="product-listing row m0 center-sm center-xs start-lg start-md">
+	<div class="product-listing row m0 start-sm start-xs start-lg start-md">
 		<div
 			v-for="(product) in products"
 			:key="product.id"
@@ -10,9 +10,6 @@
 	</div>
 </template>
 
-<style lang="stylus" scoped>
-
-</style>
 <script>
 import ProductTile from "theme/components/core/blocks/Product/ProductTile";
 let lastHero = 0;

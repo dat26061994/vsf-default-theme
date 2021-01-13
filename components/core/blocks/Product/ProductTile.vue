@@ -34,7 +34,6 @@
 					{ new: labelsActive && isNew },
 				]"
 			>
-				<!-- <div class="product-cover-2"> -->
 					<product-image
 					class="product-cover__thumb"
 					:image="thumbnailObj"
@@ -42,16 +41,14 @@
 					:calc-ratio="false"
 					data-testid="productImage"
 				/>
-				<!-- </div> -->
 			</div>
 
-			<p class="mb0 product-name h5 cl-accent mt10  " v-if="!onlyImage">
+			<p class="mb0 product-name h5 cl-accent mt10 px-3 " v-if="!onlyImage">
 				{{ product.name | htmlDecode }}
 			</p>
-
-			<!-- 3 thẻ dưới là span chuyển thành p -->
+			
 			<span
-				class="price-original text-left mr5 lh30 cl-secondary"
+				class="price-original text-left mr5 lh30 cl-secondary p-2 px-3"
 				v-if="
 					product.special_price &&
 						parseFloat(product.original_price_incl_tax) > 0 &&
@@ -69,7 +66,7 @@
 				>{{ product.price_incl_tax | price(storeView) }}</span
 			>
 			<span
-				class="lh30 price-text text-left text-sm-left text-md-left"
+				class="lh30 price-text text-left text-sm-left text-md-left p-2 px-3"
 				v-if="
 					!product.special_price &&
 						parseFloat(product.price_incl_tax) > 0 &&
@@ -251,10 +248,6 @@ $color-white: color(white);
 	font-size: 12px;
 }
 
-.product-cover-2 {
-	background-color:transparent;
-}
-
 .product-cover {
 	overflow: hidden;
 
@@ -280,9 +273,6 @@ $color-white: color(white);
 			&.sale::after,
 			&.new::after {
 				opacity: 0.8;
-			}
-			&.product-cover-2 {
-				background-color: rgba(0, 0, 0, 0.5);
 			}
 		}
 	}

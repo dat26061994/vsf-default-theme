@@ -28,12 +28,7 @@
       </div>
       <div class="container">
         <div class="row m0">
-          <!-- <button
-            class="col-xs-5 mt25 mr15 p15 mobile-filters-button bg-cl-th-accent brdr-none cl-white h5 sans-serif fs-medium-small"
-            @click="openFilters"
-          >
-            {{ $t('Filters') }}
-          </button> -->
+
           <div class="mobile-sorting col-xs-6 text-right m-auto">
             <p class="m0">Sort By</p>
           </div>
@@ -48,26 +43,7 @@
     </header>
     <div class="container pb60">
       <div class="row m0 pt15">
-        <!-- phần sidebar bên trái search theo màu, size -->
 
-        <!-- <div class="col-md-3 start-xs category-filters">
-          <sidebar :filters="getAvailableFilters" @changeFilter="changeFilter" />
-        </div>
-        <div class="col-md-3 start-xs mobile-filters" v-show="mobileFilters">
-          <div class="close-container absolute w-100">
-            <i class="material-icons p15 close cl-accent" @click="closeFilters">close</i>
-          </div>
-          <sidebar class="mobile-filters-body" :filters="getAvailableFilters" @changeFilter="changeFilter" />
-          <div class="relative pb20 pt15">
-            <div class="brdr-top-1 brdr-cl-primary absolute divider w-100" />
-          </div>
-          <button-full
-            class="mb20 btn__filter"
-            @click.native="closeFilters"
-          >
-            {{ $t('Filter') }}
-          </button-full>
-        </div> -->
         <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 px10 border-box products-list">
           <!-- phần đếm số lượng sản phẩm còn -->
 
@@ -287,7 +263,7 @@ export default {
 
   @media (max-width: 64em) {
     .products-list {
-      max-width: 530px;
+      max-width: 730px;
     }
   }
 
