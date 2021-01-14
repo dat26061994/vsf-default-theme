@@ -3,7 +3,7 @@
     <img
       :width="width"
       :height="height"
-      src="/assets/logo.svg"
+      src="https://img.btdmp.com/files/10110793/2020/09/11/0x180@15997990140affa56386.png"
       :alt="$t(defaultTitle)"
     >
   </router-link>

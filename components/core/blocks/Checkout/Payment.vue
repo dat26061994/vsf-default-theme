@@ -84,7 +84,6 @@
               text: $t('Field is required')
             }]"
           />
-
           <base-input
             class="col-xs-12 mb10"
             type="text"
@@ -98,7 +97,6 @@
               text: $t('Field is required')
             }]"
           />
-
           <base-input
             class="col-xs-12 mb10"
             type="text"

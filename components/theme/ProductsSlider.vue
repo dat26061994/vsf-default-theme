@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto">
         <h2 class="align-center cl-accent">
-            Popular Products
+            Popular Products 1
         </h2>
         <no-ssr>
             <carousel v-bind:per-page-custom=[[480,2],[780,6]] pagination-active-color="#ffffff" pagination-color="#e0e0e0">
