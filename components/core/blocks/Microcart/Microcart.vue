@@ -3,9 +3,7 @@
     class="microcart cl-accent relative bg-white"
     data-testid="microcart"
   >
-    <transition name="fade">
-      <div v-if="isEditMode" class="overlay" @click="closeEditMode" />
-    </transition>
+    <!-- shopping cart -->
     <div class="row bg-cl-primary p-3 actions align-items-center">
       <h3
         v-if="productsInCart.length"
@@ -37,12 +35,15 @@
       </router-link>
       {{ $t('to find something beautiful for You!') }}
     </div>
+
+    <!-- list product added -->
     <ul v-if="productsInCart.length" class="p-3 products">
       <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" />
     </ul>
 
     <hr class="my-2">
 
+    <!-- add to card, check out -->
     <div
       class="row p-3 bg-white"
       v-if="productsInCart.length && !isCheckoutMode"
@@ -124,7 +125,8 @@ export default {
       addCouponPressed: false,
       couponCode: '',
       componentLoaded: false,
-      isInstantCheckoutRegistered: isModuleRegistered('InstantCheckoutModule')
+      overlayy:false,
+      isInstantCheckoutRegistered: isModuleRegistered('InstantCheckoutModule'),
     }
   },
   props: {
@@ -148,7 +150,8 @@ export default {
       appliedCoupon: 'cart/getCoupon',
       totals: 'cart/getTotals',
       isOpen: 'cart/getIsMicroCartOpen'
-    }),
+    })
+    ,
     storeView () {
       return currentStoreView()
     }
@@ -156,7 +159,8 @@ export default {
   methods: {
     ...mapActions({
       applyCoupon: 'cart/applyCoupon'
-    }),
+    })
+    ,
     addDiscountCoupon () {
       this.addCouponPressed = true
     },
@@ -180,11 +184,15 @@ export default {
       }
     },
     closeMicrocartExtend () {
+      // event dấu x là cái dòng này
       this.toggleMicrocart()
       this.$store.commit('ui/setSidebar', false)
       this.addCouponPressed = false
     },
     onEscapePress () {
+      // dispatch này gọi tới 1 action trong store, action này gọi tới mutation để thay đổi state
+      // do mutation chỉ để xứ lý đồng bộ, còn action có thể bất đồng bộ nên mới vẽ ra cái dispatch này
+      // muốn gọi mutation thì cần commit, muốn gọi action thì cần dispatch
       this.$store.dispatch('ui/closeMicrocart')
     },
     clearCart () {
@@ -311,10 +319,11 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    position: absolute;
-    z-index: 0;
+    position: relative;
+    z-index: 2;
     height: 100%;
-    background:rgba(0, 0, 0, 0.4);
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.4);
   }
 
   .fade-enter-active, .fade-leave-active {

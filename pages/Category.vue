@@ -13,7 +13,7 @@
             <label class="mr10">{{ $t('Columns') }}:</label>
             <columns @change-column="columnChange" />
           </div> -->
-          <div class="sorting col-sm-2 align-right ">
+          <div class="sorting col-sm-2 align-right m-auto">
             <p>Sort By</p>
           </div>
           <div class="sorting col-sm-2 align-right ">

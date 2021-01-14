@@ -22,7 +22,6 @@ export const uiStore = {
     },
     setMicrocart (state, action) {
       state.microcart = action === true
-      state.overlay = action === true
     },
     setSidebar (state, action) {
       state.sidebar = action === true
@@ -58,7 +57,8 @@ export const uiStore = {
   },
   actions: {
     toggleMicrocart ({ commit, state }) {
-      commit('setMicrocart', !state.microcart)
+      commit('setMicrocart', !state.microcart);
+      commit('setOverlay', !state.overlay);
     },
     toggleWishlist ({ commit, state }) {
       commit('setWishlist', !state.wishlist)
