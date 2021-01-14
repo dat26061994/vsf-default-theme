@@ -32,7 +32,7 @@
 						</div> -->
 						<div>
 							<product-price
-								class="mb20"
+								class="mb10"
 								v-if="getCurrentProduct.type_id !== 'grouped'"
 								:product="getCurrentProduct"
 								:custom-options="getCurrentCustomOptions"
@@ -544,9 +544,9 @@ $color-tertiary: color(tertiary);
 $color-secondary: color(secondary);
 $color-white: color(white);
 $bg-secondary: color(secondary, $colors-background);
-$color-sliver: color(silver);
+$color-sliver: color(gainsboro);
 .border-bottom {
-	height: 4px;
+	height: 2px;
 	background-color: $color-sliver;
 }
 .product {
