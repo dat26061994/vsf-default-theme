@@ -37,7 +37,7 @@
 								:product="getCurrentProduct"
 								:custom-options="getCurrentCustomOptions"
 							/>
-							<hr class="border-bottom" />
+							<hr />
 
 							<div
 								class="cl-primary variants"
@@ -545,10 +545,7 @@ $color-secondary: color(secondary);
 $color-white: color(white);
 $bg-secondary: color(secondary, $colors-background);
 $color-sliver: color(gainsboro);
-.border-bottom {
-	height: 2px;
-	background-color: $color-sliver;
-}
+
 .product {
 	&__add-to-compare {
 		display: none;

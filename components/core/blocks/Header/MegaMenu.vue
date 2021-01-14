@@ -1,7 +1,7 @@
 <template>
 	<div class="mega-menu" @mouseleave="hideCollection">
 		<div class="mx-md-5 px-md-4 m-auto">
-			<ul class="m-0 mx-4">
+			<ul class="m-0 mx-auto container px-md-5">
 				<li
 					class="d-inline-block menu-item relative p-2"
 					v-for="item in menus.filter((m) => m.parent_id == 0)"
@@ -25,6 +25,7 @@
 							class="p-2"
 							v-for="child in menus.filter((m) => m.parent_id == item.id)"
 							:key="child.slug"
+							@click="hideCollection"
 						>
 							<router-link
 								class="no-underline col-xs uppercase "
@@ -77,12 +78,15 @@
 			<div class="row mt-md-4 center-md mx-md-4">
 				<div
 					class="col-md-2 mx-md-1 text-left"
-					v-for="item in cate.slice(0, 6)"
+					v-for="item in cate"
 					:key="item.slug"
 					:class="{ 'd-none': item.children_count == 0 }"
 				>
-					<router-link :to="categoryLink(item)">
-						<p class="collection-name mb-0 mr-md-2  p-md-2 font-weight-bold">
+					<router-link :to="categoryLink(item)" @click="hideCollection">
+						<p
+							class="collection-name mb-0 mr-md-2  p-md-2 font-weight-bold"
+							@click="hideCollection"
+						>
 							{{ item.name }}
 						</p>
 					</router-link>
@@ -91,6 +95,7 @@
 							class="my-md-1 py-md-1 px-md-2 "
 							v-for="child in item.child"
 							:key="child.slug"
+							@click="hideCollection"
 						>
 							<router-link :to="categoryLink(child)">
 								{{ child.name }}
@@ -306,7 +311,7 @@ a:hover {
 		opacity: 0;
 	}
 	.display-block {
-		height: 100vh;
+		height: 80vh;
 		opacity: 1;
 	}
 }
