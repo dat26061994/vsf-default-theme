@@ -1,6 +1,6 @@
 <template>
 	<div class="mega-menu" @mouseleave="hideCollection">
-		<div class="mx-md-5 px-md-4">
+		<div class="mx-md-5 px-md-4 m-auto">
 			<ul class="m-0 mx-4">
 				<li
 					class="d-inline-block menu-item relative p-2"
@@ -24,6 +24,7 @@
 						<li
 							class="p-2"
 							v-for="child in menus.filter((m) => m.parent_id == item.id)"
+							:key="child.slug"
 						>
 							<router-link
 								class="no-underline col-xs uppercase "
@@ -74,17 +75,25 @@
 		</div>
 		<div class="mega-menu-dropdown" :class="showAllCollection">
 			<div class="row mt-md-4 center-md mx-md-4">
-				<div class="col-md-2 mx-md-2 text-left">
-					<p class="collection-name mb-0 mr-md-2  p-md-2 font-weight-bold">
-						Name
-					</p>
+				<div
+					class="col-md-2 mx-md-1 text-left"
+					v-for="item in cate.slice(0, 6)"
+					:key="item.slug"
+					:class="{ 'd-none': item.children_count == 0 }"
+				>
+					<router-link :to="categoryLink(item)">
+						<p class="collection-name mb-0 mr-md-2  p-md-2 font-weight-bold">
+							{{ item.name }}
+						</p>
+					</router-link>
 					<ul class="my-md-2 pl-md-0">
-						<li class="my-md-1 py-md-1 px-md-2 ">
-							<router-link to="">
-								name
-								<span class="material-icons">
-									arrow_drop_down
-								</span>
+						<li
+							class="my-md-1 py-md-1 px-md-2 "
+							v-for="child in item.child"
+							:key="child.slug"
+						>
+							<router-link :to="categoryLink(child)">
+								{{ child.name }}
 							</router-link>
 						</li>
 					</ul>
@@ -105,170 +114,6 @@ export default {
 	data() {
 		return {
 			isShowCollection: false,
-			collection: [
-				{
-					name: "Popular collection",
-					slug: "collection1",
-					type: [
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-					],
-				},
-				{
-					name: "Popular collection",
-					slug: "collection2",
-					type: [
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-					],
-				},
-				{
-					name: "Popular collection",
-					slug: "collection3",
-					type: [
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-					],
-				},
-				{
-					name: "Popular collection",
-					slug: "collection4",
-					type: [
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-					],
-				},
-				{
-					name: "Popular collection",
-					slug: "collection5",
-					type: [
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-					],
-				},
-				{
-					name: "Popular collection",
-					slug: "collection6",
-					type: [
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-						{
-							name: "Men",
-							id: 1,
-							slug: "men",
-							parent_id: 0,
-							path: "/",
-						},
-					],
-				},
-			],
 			menus: [
 				{
 					name: "Men",
@@ -321,6 +166,7 @@ export default {
 				},
 			],
 			category: [],
+			cate: [],
 		};
 	},
 	mixins: [SidebarMenu],
@@ -355,19 +201,19 @@ export default {
 		},
 		async loadCategory() {
 			this.category = await this.$store.dispatch("category/list", {});
-			// for (const item of this.category.items) {
-			// 	if (item.parent_id == 2) {
-			//     console.log(item.id, item.name);
-
-			// 	}
-			// }
-			let c = this.category.items.filter((m) => m.parent_id == 2);
-			const map1 = c.map((x) => {
-				this.category.items.filter((m) => {
-					if (m.parent_id == x.id) {
-						console.log(m.id, m.parent_id, x.id);
+			this.cate = this.category.items.filter((x) => x.parent_id == 2);
+			this.showMenu(this.category.items, this.cate);
+			console.log(this.cate);
+		},
+		showMenu(array, arrchild) {
+			arrchild.map((x) => {
+				x.child = [];
+				array.map((y) => {
+					if (y.parent_id == x.id) {
+						x.child.push(y);
 					}
 				});
+				this.showMenu(array, x.child);
 			});
 		},
 	},
@@ -383,6 +229,7 @@ a {
 }
 a:hover {
 	text-decoration: none;
+	color: #000;
 }
 
 .mega-menu {
