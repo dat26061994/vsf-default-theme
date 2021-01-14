@@ -147,7 +147,7 @@ a:hover {
 .btn-add-to-cart:hover {
 	background-color: $color-btn-hover !important;
 	text-decoration: none !important;
-	outline: none !important;
+	outline: none;
 	color: $color-white;
 }
 </style>
