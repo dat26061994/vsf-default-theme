@@ -96,7 +96,7 @@ export default {
 			isSearchPanelOpen: (state) => state.ui.searchpanel,
 			isSidebarOpen: (state) => state.ui.sidebar,
 			isMicrocartOpen: (state) => state.ui.microcart,
-			isOverlayOpen: (state) => state.ui.overlay,
+			isOverlayOpen: (state) => state.ui.overlayCart,
 			isWishlistOpen: (state) => state.ui.wishlist,
 		}),
 	},

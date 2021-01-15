@@ -7,6 +7,7 @@ export const uiStore = {
     searchpanel: false,
     newsletterPopup: false,
     overlay: false,
+    overlayCart:false,
     loader: false,
     authElem: 'login',
     checkoutMode: false,
@@ -25,7 +26,7 @@ export const uiStore = {
     },
     setSidebar (state, action) {
       state.sidebar = action === true
-      state.overlay = action === true
+      state.overlayCart = action === true
     },
     setSubmenu (state, { id, depth }) {
       if (id) {
@@ -46,7 +47,7 @@ export const uiStore = {
       state.overlay = action === true
     },
     setOverlay (state, action) {
-      state.overlay = action === true
+      state.overlayCart = action === true
     },
     setLoader (state, action) {
       state.loader = action === true
@@ -58,7 +59,7 @@ export const uiStore = {
   actions: {
     toggleMicrocart ({ commit, state }) {
       commit('setMicrocart', !state.microcart);
-      commit('setOverlay', !state.overlay);
+      commit('setOverlay', !state.overlayCart);
     },
     toggleWishlist ({ commit, state }) {
       commit('setWishlist', !state.wishlist)
