@@ -32,11 +32,13 @@
 						</div> -->
 						<div>
 							<product-price
-								class="mb20"
+								class="mb10"
 								v-if="getCurrentProduct.type_id !== 'grouped'"
 								:product="getCurrentProduct"
 								:custom-options="getCurrentCustomOptions"
 							/>
+							<hr />
+
 							<div
 								class="cl-primary variants"
 								v-if="getCurrentProduct.type_id == 'configurable'"
@@ -542,6 +544,7 @@ $color-tertiary: color(tertiary);
 $color-secondary: color(secondary);
 $color-white: color(white);
 $bg-secondary: color(secondary, $colors-background);
+$color-sliver: color(gainsboro);
 
 .product {
 	&__add-to-compare {

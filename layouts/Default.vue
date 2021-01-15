@@ -166,7 +166,7 @@ export default {
 
 @media only screen and (min-width: 1080px) {
 	.main {
-		margin-top: 9rem;
+		margin-top: 9.2rem;
 	}
 }
 

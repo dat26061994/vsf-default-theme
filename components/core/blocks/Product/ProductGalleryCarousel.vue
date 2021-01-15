@@ -9,7 +9,6 @@
 			@pageChange="pageChange"
 			:navigate-to="currentPage"
 			class="mt10"
-			:class="{ 'boder-image': perpage === 1 }"
 		>
 			<slide
 				v-for="(images, index) in gallery"

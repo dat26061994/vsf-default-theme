@@ -1,7 +1,7 @@
 <template>
 	<div class="price serif">
 		<div
-			class="h3 cl-secondary padding-bottom"
+			class="h3 cl-secondary "
 			v-if="initialPrice.special && price.default && price.original"
 		>
 			<span class="h3 product-price-special weight-700">{{
@@ -13,7 +13,7 @@
 			</span>
 		</div>
 		<div
-			class="h3 product-price-default padding-bottom weight-700"
+			class="h3 product-price-default weight-700"
 			v-if="!initialPrice.special && price.default"
 		>
 			{{ price.default | price(storeView) }}
