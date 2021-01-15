@@ -14,7 +14,7 @@
             <columns @change-column="columnChange" />
           </div> -->
           <div class="sorting col-sm-2 align-right m-auto">
-            <p>Sort By</p>
+            <p class="m-auto">Sort By</p>
           </div>
           <div class="sorting col-sm-2 align-right ">
             <sort-by

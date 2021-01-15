@@ -34,7 +34,7 @@
 
 @media only screen and (min-width: 1200px) {
   .container {
-    width: 1184px;
+    width: 1080px;
     max-width: 100%;
   }
 }
@@ -753,8 +753,8 @@
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    padding-right: 8px;
-    padding-left: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .col-lg {
@@ -986,8 +986,8 @@
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    padding-right: 8px;
-    padding-left: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .col-xl {
