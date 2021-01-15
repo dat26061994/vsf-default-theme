@@ -2,8 +2,9 @@
 	<div class="default-layout">
 		<!-- <overlay v-if="overlayActive" /> -->
 		<!-- <loader /> -->
+		<div v-if="isOverlayOpen" @click="clickOverlay" class="overlay"></div>
 		<div id="viewport" class="w-100 relative">
-			<main-header />
+			<main-header/>
 			<async-sidebar
 				:async-component="SearchPanel"
 				:is-open="isSearchPanelOpen"
@@ -47,7 +48,7 @@ import { mapState } from "vuex";
 import AsyncSidebar from "theme/components/theme/blocks/AsyncSidebar/AsyncSidebar.vue";
 import MainHeader from "theme/components/core/blocks/Header/MainHeader.vue";
 import MainFooter from "theme/components/core/blocks/Footer/Footer.vue";
-import Overlay from "theme/components/core/Overlay.vue";
+// import Overlay from "theme/components/core/Overlay.vue";
 import Loader from "theme/components/core/Loader.vue";
 import Notification from "theme/components/core/Notification.vue";
 import SignUp from "theme/components/core/blocks/Auth/SignUp.vue";
@@ -95,6 +96,7 @@ export default {
 			isSearchPanelOpen: (state) => state.ui.searchpanel,
 			isSidebarOpen: (state) => state.ui.sidebar,
 			isMicrocartOpen: (state) => state.ui.microcart,
+			isOverlayOpen: (state) => state.ui.overlay,
 			isWishlistOpen: (state) => state.ui.wishlist,
 		}),
 	},
@@ -103,6 +105,9 @@ export default {
 			this.loadOrderConfirmation = true;
 			this.ordersData = payload;
 			this.$bus.$emit("modal-show", "modal-order-confirmation");
+		},
+		clickOverlay(){
+			this.$store.dispatch('ui/toggleMicrocart')
 		},
 		fetchMenuData() {
 			return this.$store.dispatch("category-next/fetchMenuCategories", {
@@ -138,7 +143,7 @@ export default {
 		MainHeader,
 		MainFooter,
 		SidebarMenu, // eslint-disable-line vue/no-unused-components
-		Overlay,
+		// Overlay,
 		Loader,
 		Notification,
 		SignUp,
@@ -164,4 +169,16 @@ export default {
 		margin-top: 9.2rem;
 	}
 }
+
+.overlay {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background-color:rgba(0, 0, 0, 0.4);
+  }
 </style>

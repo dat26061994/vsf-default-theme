@@ -109,12 +109,10 @@ import { mapGetters, mapActions } from "vuex";
 import i18n from "@vue-storefront/i18n";
 import { isModuleRegistered } from "@vue-storefront/core/lib/modules";
 import { currentStoreView } from "@vue-storefront/core/lib/multistore";
-
 import VueOfflineMixin from "vue-offline/mixin";
 import onEscapePress from "@vue-storefront/core/mixins/onEscapePress";
 import InstantCheckout from "src/modules/instant-checkout/components/InstantCheckout.vue";
 import { registerModule } from "@vue-storefront/core/lib/modules";
-
 import BaseInput from "theme/components/core/blocks/Form/BaseInput";
 import ClearCartButton from "theme/components/core/blocks/Microcart/ClearCartButton";
 import ButtonFull from "theme/components/theme/ButtonFull";
@@ -122,7 +120,6 @@ import ButtonOutline from "theme/components/theme/ButtonOutline";
 import Product from "theme/components/core/blocks/Microcart/Product";
 import EditMode from "./EditMode";
 import { InstantCheckoutModule } from "src/modules/instant-checkout";
-
 export default {
 	components: {
 		Product,
@@ -245,26 +242,22 @@ export default {
 		}
 	}
 }
-
 .mt0 {
 	@media (max-width: 767px) {
 		margin-top: 0;
 	}
 }
-
 .clearcart {
 	&-col {
 		display: flex;
 		align-self: center;
 	}
 }
-
 .products {
 	@media (max-width: 767px) {
 		padding: 30px 15px;
 	}
 }
-
 .actions {
 	@media (max-width: 767px) {
 		padding: 0 15px;
@@ -281,50 +274,41 @@ export default {
 		}
 	}
 }
-
 .summary {
 	@media (max-width: 767px) {
 		padding: 0 15px;
 		font-size: 12px;
 	}
 }
-
 .summary-heading {
 	@media (max-width: 767px) {
 		font-size: 18px;
 	}
 }
-
 .total-price-label {
 	@media (max-width: 767px) {
 		font-size: 18px;
 	}
 }
-
 .total-price-value {
 	@media (max-width: 767px) {
 		font-size: 24px;
 	}
 }
-
 .delete-button {
 	vertical-align: middle;
 }
-
 .coupon-wrapper {
 	display: flex;
-
 	.button-outline {
 		text-transform: inherit;
 		width: 50%;
 	}
-
 	.coupon-input {
 		margin-right: 20px;
 		width: 100%;
 	}
 }
-
 .overlay {
 	top: 0;
 	bottom: 0;
@@ -335,7 +319,6 @@ export default {
 	height: 100%;
 	background: rgba(0, 0, 0, 0.4);
 }
-
 .fade-enter-active,
 .fade-leave-active {
 	transition: opacity 0.4s;
