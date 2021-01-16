@@ -29,17 +29,11 @@
 				class="cl-accent no-underline product-title"
 				:to="productLink"
 				data-testid="productLink"
-				@click.native="$store.commit('ui/setMicrocart', false)"
+				@click.native="$store.dispatch('ui/toggleMicrocart')"
 			>
 				{{ product.name | htmlDecode }}
 			</router-link>
 
-			<!-- Product sku -->
-			<!-- <div class="h6 cl-bg-tertiary pt5 sku" data-testid="productSku">
-        {{ product.sku }}
-      </div> -->
-
-			<!-- Product price -->
 			<div class="">
 				<div class="prices" v-if="!displayItemDiscounts || !isOnline">
 					<span
@@ -135,60 +129,7 @@
 				/>
 				<span class="mb-2 cu" @click="removeItem">Remove item</span>
 			</div>
-			<!-- Add more items -->
-			<!-- <div class="my-1 d-flex align-center">
-				<i class="material-icons fs-add-more d-flex align-items-center px-1">
-					add
-				</i>
-				<span class="fs-add-more">Add more items</span>
-			</div> -->
 		</div>
-
-		<!-- Product details -->
-		<!-- <div class="col-xs pt15 flex pl35 flex-wrap">
-      
-      <div class="w-100 pb15 flex flex-wrap bottom-xs" v-if="editMode">
-        <div class="ml0 flex flex-wrap filters" v-if="productsAreReconfigurable">
-          <div class="h5 pt5 w-100" v-for="(option, index) in product.configurable_options" :key="index">
-            <div class="h6 cl-bg-tertiary mr10">
-              {{ option.label }}:
-            </div>
-            <div class="flex flex-wrap pt5" v-if="option.label == 'Color' && editMode">
-              <color-selector
-                v-for="filter in getAvailableFilters[option.attribute_code]"
-                v-if="isOptionAvailable(filter)"
-                :key="filter.id"
-                :variant="filter"
-                :selected-filters="getSelectedOptions"
-                @change="changeEditModeFilter"
-              />
-            </div>
-            <div class="flex flex-wrap pt5" v-else-if="option.label == 'Size' && editMode">
-              <size-selector
-                class="mr10 mb10"
-                v-for="filter in getAvailableFilters[option.attribute_code]"
-                v-if="isOptionAvailable(filter)"
-                :key="filter.id"
-                :variant="filter"
-                :selected-filters="getSelectedOptions"
-                @change="changeEditModeFilter"
-              />
-            </div>
-          </div>
-        </div>
-        <button-full
-          class="update-button mb10 mr10"
-          @click.native="updateProductVariant"
-          :disabled="isUpdateCartDisabled"
-        >
-          {{ $t('Update item') }}
-        </button-full>
-      </div>
-      <div class="w-100 flex middle-xs actions" v-if="!editMode">
-        <edit-button class="mx5" @click="openEditMode" v-if="productsAreReconfigurable && !editMode" />
-        <remove-button class="mx5" @click="removeItem" />
-      </div>
-    </div> -->
 	</li>
 </template>
 

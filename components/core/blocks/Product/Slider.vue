@@ -125,7 +125,7 @@ export default {
 			border: 1px solid #eee;
 			box-shadow: 0 1px 0 0 rgba(20, 20, 20, 0.04);
 			border-radius: 3px;
-			height: 70%;
+			height: 100%;
 		}
 	}
 
@@ -139,7 +139,7 @@ export default {
 			border: 1px solid #eee;
 			box-shadow: 0 1px 0 0 rgba(20, 20, 20, 0.04);
 			border-radius: 3px;
-			height: 85%;
+			height: 100%;
 		}
 	}
 	@media only screen and (min-width: 1000px) {
@@ -148,7 +148,7 @@ export default {
 			border: 1px solid #eee;
 			box-shadow: 0 1px 0 0 rgba(20, 20, 20, 0.04);
 			border-radius: 3px;
-			height: 85%;
+			height: 100%;
 		}
 	}
 	@media only screen and (min-width: 800px) {
@@ -157,7 +157,7 @@ export default {
 			border: 1px solid #eee;
 			box-shadow: 0 1px 0 0 rgba(20, 20, 20, 0.04);
 			border-radius: 3px;
-			height: 85%;
+			height: 80%;
 		}
 	}
 	// .product-carousel:hover {

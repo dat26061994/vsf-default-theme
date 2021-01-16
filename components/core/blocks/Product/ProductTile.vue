@@ -189,11 +189,6 @@ $color-white: color(white);
 		color: #3E444B;
 		font-size: 16px;
 	}
-	// gạch chân ở tên sp
-
-	// .product-name:hover {
-	// 	text-decoration: underline;
-	// }
 	.price-special {
 		color: red;
 	}

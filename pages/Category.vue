@@ -1,18 +1,13 @@
 <template>
   <div id="category">
-    <header class=" py35 pl20">
-      <div class="container">
+    <header class=" py35">
+      <div class="container px40">
         <breadcrumbs />
         <div class="row middle-sm">
           <h1 class="col-sm-8 category-title ">
             {{ getCurrentCategory.name }}
           </h1>
-          <!-- Là phần chọn column 3 4 hay 6 cột -->
 
-          <!-- <div class="sorting col-sm-2 align-right mt50">
-            <label class="mr10">{{ $t('Columns') }}:</label>
-            <columns @change-column="columnChange" />
-          </div> -->
           <div class="sorting col-sm-2 align-right m-auto">
             <p class="m-auto">Sort By</p>
           </div>
@@ -32,7 +27,7 @@
           <div class="mobile-sorting col-xs-6 text-right m-auto">
             <p class="m0">Sort By</p>
           </div>
-          <div class="mobile-sorting col-xs-6 m-auto">
+          <div class="mobile-sorting col-xs-6 m-auto mobile-sortby">
             <sort-by
               @change="changeFilter"
               :value="getCurrentSearchQuery.sort"
@@ -45,11 +40,6 @@
       <div class="row m0 pt15">
 
         <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 px10 border-box products-list">
-          <!-- phần đếm số lượng sản phẩm còn -->
-
-          <!-- <p class="col-xs-12 end-md m0 pb20 cl-secondary">
-            {{ $t('{count} items', { count: getCategoryProductsTotal }) }}
-          </p> -->
           <div v-if="isCategoryEmpty" class="hidden-xs">
             <h4 data-testid="noProductsInfo">
               {{ $t('No products found!') }}
@@ -253,6 +243,7 @@ export default {
 
   .category-title {
     line-height: 65px;
+    padding: 0 !important;
   }
 
   .sorting {
@@ -327,6 +318,18 @@ export default {
 
   .close {
     margin-left: auto;
+  }
+
+  .sorting {
+    padding: 0 !important;
+  }
+
+  .middle-sm {
+    margin: 0 !important;
+  }
+
+  .mobile-sortby {
+    padding-right: 24px;
   }
 </style>
 <style lang="scss">
